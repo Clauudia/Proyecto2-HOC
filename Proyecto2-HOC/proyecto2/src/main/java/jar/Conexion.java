@@ -1,4 +1,4 @@
-package src;
+package jar;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +15,7 @@ static Connection connection = null;
 	public Conexion(){   
        try{
 		Class.forName("org.sqlite.JDBC");
-		connection = DriverManager.getConnection("jdbc:sqlite:db/hoc.db");
+		connection = DriverManager.getConnection("jdbc:sqlite:db/semaforos.db");
 		statement = connection.createStatement();
 		}catch(Exception e){		
 		System.out.println(e.getClass().getName() + ": " + e.getMessage());
@@ -25,34 +25,34 @@ static Connection connection = null;
 
 
 	public ResultSet consulta(String consulta){
-	ResultSet resultSet = null;
-	try{
-	    resultSet = statement.executeQuery(consulta);
-	}catch(SQLException e){
-	    System.err.println(e.getMessage());
-	}
-	return resultSet;
+		ResultSet resultSet = null;
+		try{
+	    	resultSet = statement.executeQuery(consulta);
+		}catch(SQLException e){
+	    	System.err.println(e.getMessage());
+		}
+		return resultSet;
 
 	}
 
 	public boolean valida(){
 	try{
 	    return this.connection.isValid(0);
-	}catch(SQLException e){
-	    return false;
-		}
+		}catch(SQLException e){
+	    	return false;
+			}
     }
 
-     public void cierraConexion(){
-	try { 
-		if (statement != null) statement.close(); 
-	} catch (Exception e) {
-		};
-	try { 
-		if (connection != null) connection.close(); 
-	} catch (Exception e) {
+    public void cierraConexion(){
+		try { 
+			if (statement != null) statement.close(); 
+		} catch (Exception e) {
+			};
+		try { 
+			if (connection != null) connection.close(); 
+		} catch (Exception e) {
 
-		};
+			};
 	}
 	
 }
