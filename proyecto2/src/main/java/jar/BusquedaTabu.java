@@ -1,11 +1,19 @@
 package jar;
+import java.io.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.*;
+
 
 //Clase que implementa la heurística búsqueda tabú
 public class BusquedaTabu{
 
 	public static ListaTabu listaTabu;
 	public static Solucion solucion;
-	public static Algoritmo algoritmo;
 	public static Random random = new Random();
 	public static Semaforo[] semaforos;
 	public static long semilla;
@@ -26,7 +34,7 @@ public class BusquedaTabu{
 
 		int iteracionActual = 0;
 
-		while (algoritmo.detener(++iteracionActual, mejorSolucion)) {
+		while (optimizacion.detener(++iteracionActual, mejorSolucion)) {
 			
 			List<Solucion> vecinos = solucionActual.obtenVecinos;
 			List<Solucion> solucionesEnTabu = IteratorUtils.toList(listaTabu.iterator());
@@ -93,9 +101,6 @@ public class BusquedaTabu{
 		p1 = 0;
 		while(Math.abs(p-p1) > epsilonp){
 		    p1 = p;
-		    Tupla<Double, Solucion> tupla = calculaLote(temperatura, solucion); 
-		    p = tupla.x;
-		    solucion = tupla.y;
 		    writer.write("E: "+ solucion.getCosto() + "\n"); 
 		    if(solucion.getCosto() < minima.getCosto()){
 			minima = solucion;
@@ -126,6 +131,10 @@ public class BusquedaTabu{
 	    	};
 		}
 		return tam;
+	}
+
+	public double getCosto(){
+		return 0;
 	}
 
 

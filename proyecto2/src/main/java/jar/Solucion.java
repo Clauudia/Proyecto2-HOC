@@ -5,7 +5,7 @@ public class Solucion{
 	private int[] solucion;
 	private double valor;
 	public static final double fcosto = 2;
-	private static double mejora = (valor*100)/tiempoInicial;
+	public static double mejora = (valor*100)/600000; //600000 es el tiempo inicial
 
 	public Solucion(int[] solucion){
 		this.solucion = solucion;
@@ -66,13 +66,13 @@ public class Solucion{
 		return 0;
 	}
 
-	@Override public String toString(){
+	/*@Override public String toString(){
 		String r = "";
 		r += "Tiempo:" + this.getValor() "\n";
 		r += "Mejora:" + mejora + "%" "\n";
 		for(int s: this.solucion)
-			r += Semaforo.getNombre() + s + ",";
+			s += Semaforo.getNombre() + ":" + s + "," "\n";
 		r += "\n";
 		return r;
-	}
+	}*/
 }

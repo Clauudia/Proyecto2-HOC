@@ -1,7 +1,10 @@
 package jar;
 
+import java.util.*;
+import java.io.*;
+
 public class Principal{
-	public int[] semaforos;
+	public static int[] semaforos;
 
 	public static void configuraciónInicial(){
 		
@@ -24,12 +27,12 @@ public class Principal{
 		try{
 	    	long seed = 28;
 	    	configuraciónInicial();
-	    	BúsquedaTabu.inicializa(seed);
+	    	BusquedaTabu.inicializa(seed);
 	    	Solucion s = new Solucion(semaforos);
-	    	Solucion sol = BúsquedaTabu.busquedaGuarda(4.0, s);
+	    	Solucion sol = BusquedaTabu.busquedaGuarda(4.0, s);
 	    	System.out.println(sol);    
 		}catch(Exception e){
-	    	System.out.println("no"); 
+	    	System.out.println(""); 
 		}
 	}
 }

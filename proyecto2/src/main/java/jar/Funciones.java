@@ -4,7 +4,7 @@ package jar;
 public class Funciones{
 	
 	//función heaviside 
-	public int heaviside(double x){
+	public static int heaviside(double x){
 		if(x >= 0)
 			return 1;
 		return 0;
